@@ -1,16 +1,23 @@
-import sys
-
 N, K = map(int, input().split())
-# N개의 서로 다른 양의 정수, K번 교환
-a = list(map(int, input().split())) # 배열 A
+a = list(map(int, input().split()))
 
-cnt = 0
-result = -1
-for i in range(N-1, 0, -1):
-    for j in range(i):
-        if a[j] > a[j+1]:
-            a[j], a[j+1] = a[j+1], a[j]
-            cnt += 1
+def bubble_sort(N, K):
+    cnt = 0
+    res = []
+    for last in range(N-1, 0, -1):
+        for i in range(last):
+            if a[i] > a[i + 1]:
+                a[i], a[i + 1] = a[i + 1], a[i]
+                cnt += 1
+
             if cnt == K:
-                result = f'{a[j]} {a[j+1]}'
-print(result)
+                res.append(a[i])
+                res.append(a[i + 1])
+                return res
+
+    return [-1]
+
+result = bubble_sort(N, K)
+
+for r in range(len(result)):
+    print(result[r], end=' ')
