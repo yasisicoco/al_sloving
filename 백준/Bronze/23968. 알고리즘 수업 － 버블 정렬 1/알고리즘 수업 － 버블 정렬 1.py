@@ -1,8 +1,8 @@
 import sys
 
-N, K = map(int, sys.stdin.readline().split())
+N, K = map(int, input().split())
 # N개의 서로 다른 양의 정수, K번 교환
-a = list(map(int, sys.stdin.readline().split())) # 배열 A
+a = list(map(int, input().split())) # 배열 A
 
 cnt = 0
 result = -1
