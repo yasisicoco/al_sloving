@@ -28,6 +28,7 @@ for tc in range(1, T+1):
 
 
 
+
 # # 6485. 삼성시의 버스노선
 # import sys
 #
