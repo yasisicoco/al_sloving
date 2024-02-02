@@ -81,16 +81,17 @@ sys.stdin = open('paris.txt')
 T = int(input())
 for tc in range(1, T + 1):
     N, M = map(int, input().split())
-    arr = []
-    for _ in range(N):
-        arr.append(list(map(int, input().split())))
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    # arr = []
+    # for _ in range(N):
+    #     arr.append(list(map(int, input().split())))
         
     result = 0
-    for i in range(N - M + 1): # 5 - 2 / 0 1 2
-        for j in range(N - M + 1): # 5 - 2 / 0 1 2
+    for i in range(N - M + 1): # 5 - 2 / 시작점 설정
+        for j in range(N - M + 1): # 5 - 3 /
             kill = 0
             
-            for r in range(i, i + M): # 2 + 2 / 0 1 2 3
+            for r in range(i, i + M): # 설정된 시작점에서 M만큼의 범위 탐색
                 for c in range(j, j + M):
                     kill += arr[r][c]
             if result < kill:
