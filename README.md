@@ -1,1 +1,2 @@
-# z_problem_sloving
+# Algorithm Solving
+# my Solving is Slow
