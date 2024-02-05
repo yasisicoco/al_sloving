@@ -25,3 +25,11 @@ for tc in range(1, T+1):
         pass
 
     print(f'#{tc} {N_dict}')
+
+
+# 보충 강사님 코드
+T = int(input())
+for _ in range(1, T+1):
+    tc, input().split()
+    a = input().split()
+    
