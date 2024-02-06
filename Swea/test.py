@@ -117,21 +117,29 @@
 
 # 2851
 
-lst = []
-for tc in range(10):
-    N = int(input())
-    lst.append(N)
+# lst = []
+# for tc in range(10):
+#     N = int(input())
+#     lst.append(N)
 
-max_val = 0
-num = len(lst)
-for i in range(0, num):
-    max_val += lst[i]
-    if max_val > 100:
-        real_i = i
-        break
-realmax = max_val - 100
-fakemax = 100 - (max_val - lst[real_i])
-if abs(100 - realmax) <= abs(100 - fakemax):
-    print(max_val)
-else:
-    print(max_val - lst[real_i])
+# max_val = 0
+# num = len(lst)
+# for i in range(0, num):
+#     max_val += lst[i]
+#     if max_val > 100:
+#         real_i = i
+#         break
+# realmax = max_val - 100
+# fakemax = 100 - (max_val - lst[real_i])
+# if abs(100 - realmax) <= abs(100 - fakemax):
+#     print(max_val)
+# else:
+#     print(max_val - lst[real_i])
+
+# 1181
+N = int(input())
+if N < 10:
+    ten = N // 10 # 십의자리
+    one = N % 10 # 일의자리
+    new = ten + one
+    newone = one + 
