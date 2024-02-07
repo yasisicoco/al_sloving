@@ -6,7 +6,7 @@ for _ in range(5): # 5번 반복
 
 lst = []
 for i in range(15): # 5번 돌면서
-    for j in range(15):
+    for j in range(5):
         try:
             lst.append(strlst[j][i])
         except:
