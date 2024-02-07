@@ -136,10 +136,22 @@
 # else:
 #     print(max_val - lst[real_i])
 
-# 1181
-N = int(input())
-if N < 10:
-    ten = N // 10 # 십의자리
-    one = N % 10 # 일의자리
-    new = ten + one
-    newone = one + 
+
+#10789
+strlst = []
+
+for _ in range(5): # 5번 반복
+    text = input()
+    strlst.append(text) # 리스트에 str문자열추가
+
+lst = []
+for i in range(15): # 5번 돌면서
+    for j in range(15):
+        try:
+            lst.append(strlst[j][i])
+        except:
+            continue
+    else:
+        continue
+
+print(''.join(lst))
