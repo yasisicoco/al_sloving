@@ -1,8 +1,6 @@
-import sys
-sys.stdin = open('3143.txt')
+# import sys
+# sys.stdin = open('3143.txt')
 
-
-T = int(input())
 def maching():
     cnt = 0
     for i in range(len(A)-len(B)+1):
@@ -11,11 +9,14 @@ def maching():
                 break
         else:
             cnt += 1
+    return cnt
 
+T = int(input())
 for tc in range(1, T+1):
     A, B = input().split()
     result = maching() # cnt
-    print(f'#{tc} {result}')
+    real = len(A) - (len(B)*result) + result
+    print(f'#{tc} {real}')
     # A길이 - (B길이*cnt) + cnt
 
     # A_len = len(A) #banana
