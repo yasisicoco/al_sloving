@@ -18,4 +18,4 @@ for tc in range(1, T+1):
         if ai[j] <= min_num:
             min_num = ai[j]
             min_val = j
-    print(f'{tc} {abs(max_val-min_val)}')
+    print(f'#{tc} {abs(max_val-min_val)}')

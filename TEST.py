@@ -27,13 +27,28 @@
 
 
 # 28445. 알록달록 앵무새
-color_1, color_2 = input().split()
-color_3, color_4 = input().split()
+# color_1, color_2 = input().split()
+# color_3, color_4 = input().split()
 
-s = set([color_1, color_2, color_3, color_4])
-lst = list(s)
-lst.sort()
+# s = set([color_1, color_2, color_3, color_4])
+# lst = list(s)
+# lst.sort()
 
-for i in lst:
-    for j in lst:
-        print(i, j)
+# for i in lst:
+#     for j in lst:
+#         print(i, j)
+
+# 1110.더하기사이클
+
+num = int(input()) #68
+first_num = num
+cnt = 0
+
+while True:
+    a = num % 10 # 8
+    b = num // 10 # 6
+    num = (a * 10) + ((a + b) % 10)
+    cnt += 1
+    if num == first_num:
+        break
+print(cnt)
