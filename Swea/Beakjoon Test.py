@@ -136,10 +136,45 @@
 # else:
 #     print(max_val - lst[real_i])
 
-# 1181
-N = int(input())
-if N < 10:
-    ten = N // 10 # 십의자리
-    one = N % 10 # 일의자리
-    new = ten + one
-    newone = one + 
+
+#10789
+# strlst = []
+
+# for _ in range(5): # 5번 반복
+#     text = input()
+#     strlst.append(text) # 리스트에 str문자열추가
+
+# lst = []
+# for i in range(15): # 5번 돌면서
+#     for j in range(15):
+#         try:
+#             lst.append(strlst[j][i])
+#         except:
+#             continue
+#     else:
+#         continue
+
+# print(''.join(lst))
+
+
+#2798 블랙잭
+N, M = map(int, input().split())
+number = list(map(int, input().split()))
+
+max = 0
+for i in range(N):
+    if i < N-2:
+        one = number[i]
+        for j in range(N):
+            if i < j < N-1:
+                two = number[j]
+                for k in range(N):
+                    result = max
+                    if j < k:
+                        thr = number[k]
+                        max = number[i] + number[j] + number[k]
+                        if max <= M and max > result:
+                            result = max
+                        else:
+                            max = result
+print(result)
