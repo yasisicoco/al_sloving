@@ -158,23 +158,142 @@
 
 
 #2798 블랙잭
-N, M = map(int, input().split())
-number = list(map(int, input().split()))
+# N, M = map(int, input().split())
+# number = list(map(int, input().split()))
 
-max = 0
-for i in range(N):
-    if i < N-2:
-        one = number[i]
-        for j in range(N):
-            if i < j < N-1:
-                two = number[j]
-                for k in range(N):
-                    result = max
-                    if j < k:
-                        thr = number[k]
-                        max = number[i] + number[j] + number[k]
-                        if max <= M and max > result:
-                            result = max
-                        else:
-                            max = result
-print(result)
+# max = 0
+# for i in range(N):
+#     if i < N-2:
+#         one = number[i]
+#         for j in range(N):
+#             if i < j < N-1:
+#                 two = number[j]
+#                 for k in range(N):
+#                     result = max
+#                     if j < k:
+#                         thr = number[k]
+#                         max = number[i] + number[j] + number[k]
+#                         if max <= M and max > result:
+#                             result = max
+#                         else:
+#                             max = result
+# print(result)
+
+
+
+# import sys
+# sys.setrecursionlimit(10 ** 3)
+# input = sys.stdin.readline
+
+# N, M, R = map(int, input().split())
+
+# adjl = [[] for _ in range(N + 1)]
+# visited = [-1] * (N + 1)
+
+# def dfs(i, dep):  # 시작 i, 깊이 dep
+    
+#     visited[i] = dep
+    
+#     for w in adjl[i]:
+#         if visited[w] == -1:
+#             dfs(w, dep + 1)
+#         return
+       
+# for _ in range(M):
+#     u, v = map(int, input().split())
+#     adjl[u].append(v)
+#     adjl[v].append(u) # 무방향
+
+# for s in adjl:
+#     s.sort(reverse = True)
+
+# print(adjl)    
+# dfs(R, 0)
+# for n in range(1, N + 1):
+#     print(visited[n])
+
+# def recur(cnt):
+#     if cnt == 5:
+#         return
+    
+#     print(cnt) # 0 1 2 3 4
+#     recur(cnt+1) # 1 2 3 4 5
+#     print(cnt) # 4 3 2 1 0
+    
+# recur(0)
+
+
+# 24479 알고 깊이우선탐색 1
+# import sys
+# sys.setrecursionlimit(10 ** 6)
+
+# input = sys.stdin.readline
+
+# N, M, R = map(int, input().split())
+    
+# # 인접리스트
+# v = [[] for _ in range(N+1)]
+# # 방문 처리 리스트
+# visited = [False for _ in range(N+1)]
+
+# for i in range(M):
+#     a, b = map(int, input().split())
+#     v[a].append(b)
+#     v[b].append(a)
+    
+# for j in v:
+#     j.sort()
+    
+# vis = [0 for _ in range(N+1)]
+# cnt = 1
+# def dfs(cur):
+#     global cnt
+    
+#     for i in v[cur]:
+#         if visited[i] == True:
+#             continue
+#         visited[i] = True
+#         cur = i
+#         cnt += 1
+#         vis[i] = cnt
+#         dfs(cur)
+        
+# vis[R] = 1
+# visited[R] = True
+# dfs(R)
+
+# for k in range(1, N+1):
+#     print(vis[k])
+
+
+# 11727 타일링
+# import sys
+# sys.setrecursionlimit(10**6)
+# input = sys.stdin.readline
+# n = int(input())
+
+# def recur(n):
+#     if n == 1:
+#         return 1
+#     elif n == 2:
+#         return 3
+    
+#     return recur(n-1) + (recur(n-2) * 2)
+
+# result = recur(n)
+# print(result%10007)
+
+
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+lst = [0] * 1001
+lst[1] = 1
+lst[2] = 3
+
+for i in range(3, 1001):
+    lst[i] = lst[i-1] + (lst[i-2] * 2)
+
+print(lst[n]%10007)

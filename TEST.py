@@ -40,15 +40,15 @@
 
 # 1110.더하기사이클
 
-num = int(input()) #68
-first_num = num
-cnt = 0
+# num = int(input()) #68
+# first_num = num
+# cnt = 0
 
-while True:
-    a = num % 10 # 8
-    b = num // 10 # 6
-    num = (a * 10) + ((a + b) % 10)
-    cnt += 1
-    if num == first_num:
-        break
-print(cnt)
+# while True:
+#     a = num % 10 # 8
+#     b = num // 10 # 6
+#     num = (a * 10) + ((a + b) % 10)
+#     cnt += 1
+#     if num == first_num:
+#         break
+# print(cnt)
