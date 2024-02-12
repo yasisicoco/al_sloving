@@ -285,15 +285,52 @@
 
 
 
+# import sys
+# input = sys.stdin.readline
+
+# n = int(input())
+# lst = [0] * 1001
+# lst[1] = 1
+# lst[2] = 3
+
+# for i in range(3, 1001):
+#     lst[i] = lst[i-1] + (lst[i-2] * 2)
+
+# print(lst[n]%10007)
+
+# 2606 바이러스
 import sys
 input = sys.stdin.readline
+V = int(input())
+E = int(input())
 
-n = int(input())
-lst = [0] * 1001
-lst[1] = 1
-lst[2] = 3
+# 인접리스트
+v = [[] for _ in range(V+1)]
+# 방문확인리스트
+visited = [False for _ in range(V+1)]
 
-for i in range(3, 1001):
-    lst[i] = lst[i-1] + (lst[i-2] * 2)
+for i in range(E):
+    a, b = map(int, input().split())
+    v[a].append(b)
+    v[b].append(a)
 
-print(lst[n]%10007)
+print(v)
+
+def dfs(cur):
+    for j in v[cur]:
+        if visited[j]:
+            continue
+        visited[j] = True
+        cur = j
+        dfs(cur)
+
+visited[1] = True
+dfs(1)
+print(visited)
+
+cnt = 0
+for k in range(V+1):
+    if visited[k] == True:
+        cnt += 1
+
+print(cnt-1)

@@ -58,27 +58,61 @@
 # 소정누나 스택
 
 
-T = int(input())
-for tc in range(1, T+1):
+# T = int(input())
+# for tc in range(1, T+1):
     
-    v = [[] for _ in range(V + 1)] # 인접리스트
-    visited = [False for _ in range(V+1)] # 본거
+#     v = [[] for _ in range(V + 1)] # 인접리스트
+#     visited = [False for _ in range(V+1)] # 본거
     
-    V, E = map(int, input().split())
-    for i in range(E):
-        a, b = map(int, input().split())
-        v[a].append(b)
-        # v[b].append(a) # 양방향
+#     V, E = map(int, input().split())
+#     for i in range(E):
+#         a, b = map(int, input().split())
+#         v[a].append(b)
+#         # v[b].append(a) # 양방향
         
-def dfs(S, G):
+# def dfs(S, G):
     
-    for j in v[S]:
-        if visited[j] == True:
-            continue
-        visited[j] = True
-        # 연산, 조건
-        dfs(j, G)
+#     for j in v[S]:
+#         if visited[j] == True:
+#             continue
+#         visited[j] = True
+#         # 연산, 조건
+#         dfs(j, G)
         
-        if j == G:
-            ans = 1
-            break
+#         if j == G:
+#             ans = 1
+#             break
+
+# 1219
+import sys
+sys.stdin = open('1219.txt', 'r')
+
+for tc in range(1, 11):
+    T, E = map(int, input().split())
+    
+    v = [[] for _ in range(101)]
+    visited = [False for _ in range(101)]
+    
+    lst = list(map(int, input().split()))
+    for i in range(0, E*2, 2):
+        a, b = lst[i], lst[i+1]
+        v[a].append(b) # 유향 그래프
+    
+    result = 0
+    def dfs(cur, end):
+        global result
+        for k in v[cur]:
+            if visited[k]:
+                continue
+            visited[k] == True
+            if k == end:
+                result = 1
+            cur = k
+            dfs(cur, end)
+        else:
+            return result
+
+    # dfs(cur, R) 현재 == 0, 도착점 == 99
+    result = dfs(1, 99)
+    
+    print(f'#{tc} {result}')
