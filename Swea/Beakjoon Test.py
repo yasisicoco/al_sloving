@@ -157,24 +157,58 @@
 # print(''.join(lst))
 
 
-#2798 블랙잭
-N, M = map(int, input().split())
-number = list(map(int, input().split()))
+# 2798 블랙잭
+# N, M = map(int, input().split())
+# number = list(map(int, input().split()))
 
-max = 0
-for i in range(N):
-    if i < N-2:
-        one = number[i]
-        for j in range(N):
-            if i < j < N-1:
-                two = number[j]
-                for k in range(N):
-                    result = max
-                    if j < k:
-                        thr = number[k]
-                        max = number[i] + number[j] + number[k]
-                        if max <= M and max > result:
-                            result = max
-                        else:
-                            max = result
-print(result)
+# max = 0
+# for i in range(N):
+    # if i < N-2:
+        # one = number[i]
+        # for j in range(N):
+            # if i < j < N-1:
+                # two = number[j]
+                # for k in range(N):
+                    # result = max
+                    # if j < k:
+                        # thr = number[k]
+                        # max = number[i] + number[j] + number[k]
+                        # if max <= M and max > result:
+                            # result = max
+                        # else:
+                            # max = result
+# print(result)
+
+
+# 24482 깊이우선탐색4
+N, M, R = map(int, input().split()) # 정점, 간선, 시작정점
+
+# 인접 리스트
+v = [[] for _ in range(N+1)]
+# 방문처리 리스트
+visited = [False for _ in range(N+1)]
+
+for i in range(M):
+    a, b = map(int, input().split())
+    v[a].append(b)
+    v[b].append(a)
+
+for j in v:
+    j.sort(reverse=True)
+
+print(v)
+depth = [-1 for _ in range(N+1)] # 방문안한 정점은 -1
+
+def dfs(cur, dep):
+    for i in v[cur]:
+        if visited[i]: # True
+            continue
+        visited[i] = True
+        depth[i] = dep
+        dfs(i, dep + 1)
+
+visited[R] = True # R은 시작정점
+depth[R] = 0 # 시작정점 R의 깊이는 0
+dfs(R, 1)
+for k in range(1, N+1):
+    print(depth[k])
