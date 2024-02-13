@@ -52,15 +52,50 @@ def dfs(i): # 시작 i, 마지막 V
 1 2 1 3 2 4 2 5 4 6 5 6 6 7 3 7
 '''
 # V (vertex) : 정점수, E (edge) : 간선 수 
-V, E = map(int, input().split())
-arr = list(map(int, input().split()))
-# 인접리스트로 저장
-# 정점 번호가 1번부터 V번까지이므로: V+1
-G = [[] for _ in range(V + 1)]
-for i in range(0, E*2, 2):
-    u, v = arr[i], arr[i+1]
-    G[u].append(v) # 유향 그래프이면 이것만
-    G[v].append(u) # 무향 그래프이기에 두쪽 다 추가
+# V, E = map(int, input().split())
+# arr = list(map(int, input().split()))
+# # 인접리스트로 저장
+# # 정점 번호가 1번부터 V번까지이므로: V+1
+# G = [[] for _ in range(V + 1)]
+# for i in range(0, E*2, 2):
+#     u, v = arr[i], arr[i+1]
+#     G[u].append(v) # 유향 그래프이면 이것만
+#     G[v].append(u) # 무향 그래프이기에 두쪽 다 추가
+#
+# for i in range(1, V+1):
+#     print(i, '-->', G[i])
 
-for i in range(1, V+1):
-    print(i, '-->', G[i])
+'''
+fx = (6+5*(2-8)/2)
+'''
+stack = []
+
+top = -1
+stack = [0]*100
+
+icp = {'(':3, '*':2, '/':2, '+':1, '-':1} # 스택 밖에서 우선순위
+isp = {'(':0, '*':2, '/':2, '+':1, '-':1} # 스택 안에서 우선순위
+
+fx = '(6+5*(2-8)/2)'
+postfix = ''
+for tk in fx:
+    if tk == '(' or (tk in '*/+-' and isp[stack[top]] < icp[tk]): # 여는 괄호 push, top원소보다 우선순위가 높으면 push
+        top += 1 # push
+        stack[top] = tk
+    elif tk in '*/+-' and isp[stack[top]] >= icp[tk]: # 연산자이고 top원소보다 우선순위가 높지않으면
+        while isp[stack[top]] >= icp[tk]:             # top원소보다 우선순위가 낮을 때까지 pop
+            top -= 1                                  # pop
+            postfix += stack[top+1]
+        top += 1
+        stack[top] = tk
+    elif tk == ')':                                   # 닫는 괄호면, 여는 괄호를 만날때까지 pop
+        while stack[top] != '(':
+            top -= 1
+            postfix += stack[top+1]
+        top -= 1                                      # 여는 괄호 pop 해서 버림
+    else:                                             # 피연산자인 경우
+        postfix += tk
+
+print(postfix)
+
+
