@@ -299,38 +299,59 @@
 # print(lst[n]%10007)
 
 # 2606 바이러스
-import sys
-input = sys.stdin.readline
-V = int(input())
-E = int(input())
+# import sys
+# input = sys.stdin.readline
+# V = int(input())
+# E = int(input())
 
-# 인접리스트
-v = [[] for _ in range(V+1)]
-# 방문확인리스트
-visited = [False for _ in range(V+1)]
+# # 인접리스트
+# v = [[] for _ in range(V+1)]
+# # 방문확인리스트
+# visited = [False for _ in range(V+1)]
 
-for i in range(E):
-    a, b = map(int, input().split())
-    v[a].append(b)
-    v[b].append(a)
+# for i in range(E):
+#     a, b = map(int, input().split())
+#     v[a].append(b)
+#     v[b].append(a)
 
-print(v)
+# print(v)
 
-def dfs(cur):
-    for j in v[cur]:
-        if visited[j]:
+# def dfs(cur):
+#     for j in v[cur]:
+#         if visited[j]:
+#             continue
+#         visited[j] = True
+#         cur = j
+#         dfs(cur)
+
+# visited[1] = True
+# dfs(1)
+# print(visited)
+
+# cnt = 0
+# for k in range(V+1):
+#     if visited[k] == True:
+#         cnt += 1
+
+# print(cnt-1)
+
+
+# 15649번
+N, M = map(int, input().split())
+visited = [False for _ in range(N+10)]
+arr = []
+
+def back(N, M):
+    if len(arr) == M:
+        print(*arr)
+        return
+    for i in range(1, N+1):
+        if visited[i]:
             continue
-        visited[j] = True
-        cur = j
-        dfs(cur)
+        visited[i] = True
+        arr.append(i)
+        back(N, M)
+        arr.pop()
+        visited[i] = False
 
-visited[1] = True
-dfs(1)
-print(visited)
-
-cnt = 0
-for k in range(V+1):
-    if visited[k] == True:
-        cnt += 1
-
-print(cnt-1)
+back(N, M)

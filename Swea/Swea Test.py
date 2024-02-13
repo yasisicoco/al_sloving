@@ -84,35 +84,174 @@
 #             break
 
 # 1219
+# import sys
+# sys.stdin = open('1219.txt', 'r')
+
+# for tc in range(1, 11):
+#     T, E = map(int, input().split())
+    
+#     v = [[] for _ in range(101)]
+#     visited = [False for _ in range(101)]
+    
+#     lst = list(map(int, input().split()))
+#     for i in range(0, E*2, 2):
+#         a, b = lst[i], lst[i+1]
+#         v[a].append(b) # 유향 그래프
+    
+#     result = 0
+#     def dfs(cur, end):
+#         global result
+#         for k in v[cur]:
+#             if visited[k]:
+#                 continue
+#             visited[k] == True
+#             if k == end:
+#                 result = 1
+#             cur = k
+#             dfs(cur, end)
+#         else:
+#             return result
+
+#     # dfs(cur, R) 현재 == 0, 도착점 == 99
+#     result = dfs(1, 99)
+    
+#     print(f'#{tc} {result}')
+
+
+# 11613
+# import sys
+# sys.stdin = open('11613.txt')
+
+# T = int(input())
+# for tc in range(1, T+1):
+
+#     stack = []
+#     fx = input().split()
+
+#     result = 'error'
+#     for i in fx:
+#         if i == '.':
+#             if len(stack) == 1:
+#                 result = stack.pop()
+
+#         elif i in '*/+-': # 연산자일때
+#             if len(stack) < 2:
+#                 break
+#             a = stack.pop()
+#             b = stack.pop()
+
+#             if i == '*':
+#                 c = a * b
+#                 stack.append(c)
+#             elif i == '/':
+#                 c = b / a
+#                 stack.append(int(c))
+#             elif i == '+':
+#                 c = a + b
+#                 stack.append(c)
+#             elif i == '-':
+#                 c = b - a
+#                 stack.append(c)
+        
+#         else: # 숫자면
+#             stack.append(int(i))
+    
+#     print(f'#{tc} {result}')
+    
+
+# 1222
+# import sys
+# sys.stdin = open('1222.txt', 'r')
+# for tc in range(1, 11):
+#     a = int(input()) # 계산식 길이
+
+#     b = input() # 문자열 계산식
+#     stack = [0] * a
+#     top = -1
+#     postfix = []
+    
+#     for tk in b:
+#         if tk == '+':
+#             # top += 1 # push
+#             stack[top] = tk
+#         elif tk != '+':
+#             postfix.append(int(tk))
+#             if len(postfix) == 2 and '+' in stack:
+#                 one = postfix.pop()
+#                 two = postfix.pop()
+#                 # stack.pop(0)
+#                 # top -= 1
+#                 someone = one + two
+#                 postfix.append(someone)
+    
+#     result = postfix.pop()
+
+#     print(f'#{tc} {result}')
+
+
+
+#11620
+# import sys
+# sys.stdin = open('11620.txt', 'r')
+
+# T = int(input())
+# for tc in range(T+1):
+#     N = int(input())
+#     v = [list(map(int, input().split())) for _ in range(N)]
+#     visited = [False for _ in range(N)]
+#     print(v)
+
+#     di = [0, 1, 0, -1]
+#     dj = [1, 0, -1, 0]
+
+#     for i in range(N):
+#         for j in range(N):
+#             if v[i][j] == 2:
+#                 for k in range(4):
+#                     i = i + di[k]
+#                     j = j + dj[j]
+#                     if 0 <= v[i][j] <= 3:
+#                         if v[i][j] == 1:
+#                             pass
+#                         elif v[i][j] == 0:
+#                             i = i + di[k]
+#                             j = j + dj[j]
+
+# def back(i, j):
+#     for l in v[i][j]:
+#         if l == 3:
+#             return 1
+#         elif l == 1:
+#             continue
+#         else:
+#             continue
+
+
+
 import sys
-sys.stdin = open('1219.txt', 'r')
+sys.setrecursionlimit(10 ** 6)
 
-for tc in range(1, 11):
-    T, E = map(int, input().split())
-    
-    v = [[] for _ in range(101)]
-    visited = [False for _ in range(101)]
-    
-    lst = list(map(int, input().split()))
-    for i in range(0, E*2, 2):
-        a, b = lst[i], lst[i+1]
-        v[a].append(b) # 유향 그래프
-    
-    result = 0
-    def dfs(cur, end):
-        global result
-        for k in v[cur]:
-            if visited[k]:
-                continue
-            visited[k] == True
-            if k == end:
-                result = 1
-            cur = k
-            dfs(cur, end)
-        else:
-            return result
+N, M, R = map(int, input().split())
 
-    # dfs(cur, R) 현재 == 0, 도착점 == 99
-    result = dfs(1, 99)
-    
-    print(f'#{tc} {result}')
+def dfs(start, count):
+    visited[start] = count
+
+    for i in arr[start]:
+        if visited[i] == 0:
+            dfs(i, count + 1)
+    return
+
+arr = [[] for _ in range(N + 1)]
+visited = [0] * (N + 1)
+
+for _ in range(M):
+    u, v = map(int, sys.stdin.readline().split())
+    arr[u].append(v)
+    arr[v].append(u) # 무방향
+
+for s in arr:
+    s.sort()
+
+dfs(R, 1)
+for n in range(1, N + 1):
+    print(visited[n])
