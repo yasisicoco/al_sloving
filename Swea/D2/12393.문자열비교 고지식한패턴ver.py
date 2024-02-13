@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('D2문자열문자열비교.txt')
+sys.stdin = open('12393.txt')
 
 # T = int(input())    
 # for tc in range(1, T+1):
