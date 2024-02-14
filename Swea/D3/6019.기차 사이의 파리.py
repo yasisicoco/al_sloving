@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('between_paris.txt')
+sys.stdin = open('6019.txt')
 
 T = int(input())
 for tc in range(1, T + 1):

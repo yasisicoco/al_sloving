@@ -2,6 +2,7 @@
 import sys
 sys.stdin = open('11613.txt')
 
+# state 1
 T = int(input())
 for tc in range(1, T+1):
 

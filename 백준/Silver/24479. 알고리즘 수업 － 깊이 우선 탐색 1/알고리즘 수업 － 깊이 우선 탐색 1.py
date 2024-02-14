@@ -18,7 +18,7 @@ for i in range(M):
 for j in v:
     j.sort()
     
-vis = [0 for _ in range(N+1)]
+vis = [0 for _ in range(N+1)] # 0 / 1 2
 cnt = 1
 def dfs(cur):
     global cnt
@@ -31,6 +31,7 @@ def dfs(cur):
         cnt += 1
         vis[i] = cnt
         dfs(cur)
+        # 여기로 돌아온다. i will be back
         
 vis[R] = 1
 visited[R] = True
