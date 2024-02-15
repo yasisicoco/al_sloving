@@ -1,5 +1,6 @@
 import sys
-sys.stdin = open('C:\\Users\\지누잉\\Desktop\\jinwoo\\al_sloving\\Swea\\input\\11611.txt')
+# sys.stdin = open('C:\\Users\\지누잉\\Desktop\\jinwoo\\al_sloving\\Swea\\input\\11611.txt')
+sys.stdin = open('./Swea/input/11611.txt')
     
 def back(i, N, sumone):
     
