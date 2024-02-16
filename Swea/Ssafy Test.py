@@ -1,39 +1,37 @@
-size = 5
-Q = [0] * size
-front=rear=0
+def bfs(cur, N, G):
+    D = [0] * (N + 1)
+    R = [0] * (N + 1)
+ 
+    visited = [0] * (N + 1)
+    q = []
+    q.append(cur)
+    visited[cur] = 1
 
-def enQueue(item):
-    global rear
-    # 선형큐> full-check : rear == size -1
-    # rear += 1
-    # 원형큐> full =>
-    if (rear+1) % size == front:
-        print('Full!!!')
-        return
-    rear = (rear + 1) % size
-    Q[rear] = item
+    # while q:
+    #     t = q.pop(0)
+    #     if t == G:
+    #         return visited[t] - 1
+    #     for j in v[t]:
+    #         if visited[j] == 0:
+    #             q.append(j)
+    #             visited[j] = 1 # 방문확인용
+    #             D[j] = D[t] + 1 # D는 얼마나왔는지 저장(거리)
+    #             R[j] = R[t]   # R은 어디서왔는지 저장(장소)
+    #             pass
 
-def isEmpty():
-    return front == rear
 
-def deQueue():
-    global front
-    # empty-check 는 f == r
-    # front += 1
-    #
-    front = (front + 1) % size
-    return Q[front]
+# T = int(input())
+# for tc in range(1, T+1):
+#     V, E = map(int, input().split())
+#     # 인접리스트
+#     v = [[] for _ in range(V+1)]
+#     # 방문리스트
+#     # visited = [[0] for _ in range(V+1)]
 
-def empty():
-    return front == rear
+#     for i in range(E):
+#         a, b = map(int, input().split())
+#         v[a].append(b)
+#         v[b].append(a)
+#     S, G = map(int, input().split())
 
-enQueue(1)
-enQueue(2)
-enQueue(3)
-enQueue(4)
-enQueue(5)
-print(Q)
-print(front, rear)
-
-while not empty():
-    print(deQueue())
+#     print(f'#{tc} {}')

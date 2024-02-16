@@ -1,29 +1,24 @@
-import sys
+def bfs(si, sj):
+    q = []
+    q.append(maze[si][sj])
 
-def dus(cur):
-    if cur[0] == 'push':
-        st.append(int(cur[1]))
-    elif cur[0] == 'pop':
-        if st == []:
-            print(-1)
-        else:
-            print(st.pop())
-    elif cur[0] == 'size':
-        print(len(st))
-    elif cur[0] == 'empty':
-        if st:
-            print(0)
-        else:
-            print(1)
-    elif cur[0] == 'top':
-        if st == []:
-            print(-1)
-        else:
-            print(st[-1])
-        
-N = int(input())
-st = []
-for _ in range(N):
-    a = sys.stdin.readline().split()
+
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    maze = [list(map(int, input())) for _ in range(N)]
+
+    # 방문 리스트
+    visited = [[0] * (N+1) for _ in range(N+1)]
+
+    for i in range(N): # 시작과 끝 찾기
+        for j in range(N):
+            if maze[i][j] == 2:
+                start_i = i
+                start_j = j
+            elif maze[i][j] == 3:
+                goal_i = i
+                goal_j = j
+                break
     
-    dus(a)
+    bfs(start_i, start_j)
