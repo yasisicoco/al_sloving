@@ -11,7 +11,11 @@ for tc in range(1, T+1):
     
     cnt = 0
     while True:
-        if queue[0][1] == max(queue, key=lambda x: x[1])[1]: # 만약 맨앞 데이터가 제일 중요하다면
+        impo = -1
+        for j in queue:
+            if j[1] > impo:
+                impo = j[1]
+        if queue[0][1] == impo: # 만약 맨앞 데이터가 제일 중요하다면
             cnt += 1 # 뽑기
             if queue[0][0] == M: # 뽑은게 내가 찾는거라면, queue[idx == M][i]
                 print(cnt) # 프린트
