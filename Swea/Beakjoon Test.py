@@ -1,28 +1,26 @@
-N = int(input())
-postfix = input() # 문자열 받기
-num = []
-st = []
+from collections import deque
 
-for _ in range(N):
-    num.append(int(input()))
+T = int(input())
+for tc in range(1, T+1):
+    N, M = map(int, input().split()) # 문서의 개수, 궁금문서 idx
+    lst = list(map(int, input().split()))
+    queue = deque()
 
-for dus in postfix:
-    if dus in '*/+-':
-        if len(st) <= 1:
-            break
-        else:
-            a = st.pop()
-            b = st.pop()
-            if dus == '*':
-                st.append(b * a)
-            elif dus == '/':
-                st.append(b / a)
-            elif dus == '+':
-                st.append(b + a)
-            elif dus == '-':
-                st.append(b - a)
-    else:
-        st.append(num[ord(dus) - ord('A')]) # idx == 0 1 2 3 4
+    for idx, i in enumerate(lst):
+        queue.append((idx, i))
     
-result = st.pop()
-print(f'{result:.2f}')
+    cnt = 0
+    while True:
+        impo = -1
+        for j in queue: # 최고중요도 탐색
+            if j[1] > impo:
+                impo = j[1]
+        if queue[0][1] == impo: # 만약 맨앞 데이터가 제일 중요하다면
+            cnt += 1 # 뽑기
+            if queue[0][0] == M: # 뽑은게 내가 찾는거라면, queue[idx == M][i]
+                print(cnt) # 프린트
+                break
+            else: # 아니라면
+                queue.popleft() # 빼기
+        else:
+            queue.append(queue.popleft()) # 빼서 뒤로넣기
