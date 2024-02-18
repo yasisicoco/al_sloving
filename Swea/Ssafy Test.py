@@ -1,37 +1,15 @@
-def bfs(cur, N, G):
-    D = [0] * (N + 1)
-    R = [0] * (N + 1)
- 
-    visited = [0] * (N + 1)
-    q = []
-    q.append(cur)
-    visited[cur] = 1
+import math
 
-    # while q:
-    #     t = q.pop(0)
-    #     if t == G:
-    #         return visited[t] - 1
-    #     for j in v[t]:
-    #         if visited[j] == 0:
-    #             q.append(j)
-    #             visited[j] = 1 # 방문확인용
-    #             D[j] = D[t] + 1 # D는 얼마나왔는지 저장(거리)
-    #             R[j] = R[t]   # R은 어디서왔는지 저장(장소)
-    #             pass
+start = (1, 1)
+end = (2, 2)
 
+a = abs(end[0] -start[0])
+b = abs(end[1] - start[1])
 
-# T = int(input())
-# for tc in range(1, T+1):
-#     V, E = map(int, input().split())
-#     # 인접리스트
-#     v = [[] for _ in range(V+1)]
-#     # 방문리스트
-#     # visited = [[0] for _ in range(V+1)]
+r = math.sqrt(a**2 + b**2)
+print(r)
 
-#     for i in range(E):
-#         a, b = map(int, input().split())
-#         v[a].append(b)
-#         v[b].append(a)
-#     S, G = map(int, input().split())
+radian = math.atan(b/a)
+print(radian)
 
-#     print(f'#{tc} {}')
+print(r, math.degrees(radian))
