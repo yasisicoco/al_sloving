@@ -5,11 +5,11 @@ for tc in range(1, T+1):
     
     sumone = 0
     for _ in range(M):
-        mini_i, mini_j, leng = map(int, input().split())
+        mini_i, mini_j, r = map(int, input().split())
     
-        for i in range(mini_i, N):
-            for j in range(mini_j, N):
-                if 0 <= i+leng < N and 0 <= j+leng < N:
+        for i in range(mini_i, mini_i+r):
+            for j in range(mini_j, mini_j+r):
+                if 0 <= i < N and 0 <= j < N:
                     sumone += arr[i][j]
                     arr[i][j] = 0
 
