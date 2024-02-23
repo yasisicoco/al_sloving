@@ -1,45 +1,39 @@
-# 11315. 오목
+# 가운데 터뜨리면 상하좌우가 같이 터짐
+# 종이 꽃가루 개수 A가 주어짐.
+# 한개의 풍선 선택 -> 날릴수있는 꽃가루의 합 중 최대.
 
-# 구현으로 풀어보자
-# 주어진 정수 N 은 오목판의 크기 (가로x세로)
-# 문자열로 배열 만들기
-# 포문 두개로 배열 돌면서 o 찾기
-# 방향 벡터는 오른쪽, 아래, 오른대각,왼대각 만 찾자
-# 찾은 o를 방향 벡터로 움직이면서 연속되는 오목알 5개를 찾으면 YES 후 브레이크
-# 끝까지 못찾으면 NO
+# 전략
+# 최댓값 변수설정 / 방향 벡터 설정(상하좌우)
+# 포문 돌면서 종이 꽃가루 찾기
+# 종이 꽃가루를 찾으면 방향벡터로 돌고, 꽃가루갯수 합더하기
 
-import sys
-# sys.stdin = open('swea\\input\\11315.txt')
-sys.stdin = open('al_sloving\\swea\\input\\11315.txt')
-sys.setrecursionlimit(10 ** 6)
+from pprint import pprint
+# 방향 벡터설정
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
 
-# 방향 벡터 설정
-di = [0, 1, 1, 1] # 우 하 우하 좌하
-dj = [1, 0, 1, -1]
+def vec(r, c):
+    global sumone
 
-def omok(arr):
-    global cnt
-    
-    for i in range(N):
-        for j in range(N):
+    for k in range(4):
+        ni = r + di[k]
+        nj = c + dj[k]
 
-            if arr[i][j] == 'o':
-                for k in range(4): # 바로 돌지 않음
-                    ni = i
-                    nj = j
-                    cnt = 0
-                    # 연속?
-                    while 0 <= ni < N and 0 <= nj < N and arr[ni][nj] == 'o':
-                        cnt += 1
-                        ni += di[k] # while문에서 한방향으로 계속 돌기
-                        nj += dj[k]
-                    if cnt >= 5:
-                        return 'YES'
-    return 'NO'
+        if 0 <= ni < N and 0 <= nj < M:
+            sumone += arr[ni][nj]
 
 T = int(input())
 for tc in range(1, T+1):
-    N = int(input())
-    arr = [input() for _ in range(N)]
+    N, M = map(int, input().split())
+    arr = [list(map(int, input().split())) for _ in range(N)] # N줄
 
-    print(f'#{tc} {omok(arr)}')
+    result = 0 # 초기화
+    for i in range(N):
+        for j in range(M): # 배열의 가로길이
+            sumone = arr[i][j] # 현재장소 꽃가루 개수
+            si = i # 상하좌우 확인
+            sj = j
+            vec(si, sj) # 들어가서 상하좌우 값 더하기
+            if result <= sumone:
+                result = sumone
+    print(f'#{tc} {result}')

@@ -1,46 +1,38 @@
-# N = int(input())
-#
-# lst = [[0] * 7 for _ in range(2)]
-#
-# t1 = N
-# for i in range(4):
-#     lst[0][i] = t1
-#     t1 += 1
-#
-# t2 = N
-# for i in range(6, 2, -1):
-#     lst[1][i] = t2
-#     t2 -= 1
-#
-# print(lst)
+key = 1004
 
-# import sys
-# sys.stdin = open('input.txt', 'r')
-# sys.stdout = open('output.txt', 'w')
-#
-# n, m = map(int, input().split())
-# print(n+m, n*m)
+def lock(num):
+    return num ^ key
 
-dic = {
-    0: '0000',
-    1: '0001',
-    2: '0010',
-    3: '0011',
-    4: '0100',
-    5: '0101',
-    6: '0110',
-    7: '0111',
-    8: '1000',
-    9: '1001',
-    'A': '1010',
-    'B': '1011',
-    'C': '1100',
-    'D': '1101',
-    'E': '1110',
-    'F': '1111'
-}
-print(dic[1])
-print(dic[5])
-print(dic[4])
-print(dic[3])
-print(dic[2])
+print(lock(1000))
+print(lock(4))
+
+t = 1
+for i in range(5):
+    print(bin(t), t)
+    t = t << 1
+
+T = int(input())
+
+for tc in range(1, T+1):
+    for _ in range(5):
+        N, M = map(int, input().split())
+        if not bin(M) == 0:
+            print(f'#{tc} ON')
+        else:
+            print(f'#{tc} OFF')
+
+
+
+M = 31
+N = 5
+def Test():
+    tar = M
+    for i in range(N):
+        if tar & 0x1 == 0:
+            return False
+        tar = tar >> 1
+    return True
+print(Test())
+
+num = 0.1
+print(f'{num:.20f}')
