@@ -33,3 +33,36 @@ for k in range(V+1):
         cnt += 1
 
 print(cnt-1)
+
+
+
+
+# state 2 (진화한 나)
+# import sys
+# sys.setrecursionlimit(10 ** 6)
+
+# def dfs(cur):
+    # global cnt
+    # for i in v[cur]:
+        # if visited[i] == True:
+            # continue
+        # visited[i] = True
+        # cur = i
+        # cnt += 1
+        # dfs(cur)
+
+# V = int(input())
+# E = int(input())
+
+# v = [[] for _ in range(V+1)]
+# visited =[False for _ in range(V+1)]
+
+# cnt = 0
+# for i in range(E):
+    # a, b = map(int, input().split())
+    # v[a].append(b)
+    # v[b].append(a)
+
+# visited[1] = True
+# dfs(1)
+# print(cnt)
