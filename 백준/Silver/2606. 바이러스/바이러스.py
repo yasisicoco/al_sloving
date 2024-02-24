@@ -1,35 +1,38 @@
-import sys
-input = sys.stdin.readline
-V = int(input())
-E = int(input())
+from sys import stdin; input = stdin.readline
 
-# 인접리스트
-v = [[] for _ in range(V+1)]
-# 방문확인리스트
-visited = [False for _ in range(V+1)]
+def virus(start, vertex):
+    visited = [0] * (vertex + 1)
+    stack = []
+    visited[start] = 1
+    # print(start)
+    cnt = 0
+    while True:
+        for a in adjl[start]:
+            if visited[a] == 0:
+                visited[a] = 1
+                stack.append(start)
+                start = a
+                # print(start)
+                cnt += 1
+                break
+        else:
+            if stack:
+                start = stack.pop()
+            else:
+                break
+                # return cnt
+    return cnt
+
+# V : 컴퓨터 수(노드 수)
+V = int(input())
+# E : 연결 쌍 수(간선 수)
+E = int(input())
+# 인접 리스트
+adjl = [[] for _ in range(V + 1)]
 
 for i in range(E):
-    a, b = map(int, input().split())
-    v[a].append(b)
-    v[b].append(a)
+    u, v = map(int, input().split())
+    adjl[u].append(v)
+    adjl[v].append(u)   # 무향그래프
 
-# print(v)
-
-def dfs(cur):
-    for j in v[cur]:
-        if visited[j]:
-            continue
-        visited[j] = True
-        cur = j
-        dfs(cur)
-
-visited[1] = True
-dfs(1)
-# print(visited)
-
-cnt = 0
-for k in range(V+1):
-    if visited[k] == True:
-        cnt += 1
-
-print(cnt-1)
+print(virus(1, V))
