@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import sys
 sys.setrecursionlimit(10 ** 6)
 input = sys.stdin.readline
@@ -35,3 +36,5 @@ for i in range(1, N+1):
     if link[i] != 0: # 순회중 만약 link가 0이 아닌게 있다면 cnt+=1
         cnt += 1
 print(cnt)
+=======
+>>>>>>> 3749e6a7d99a5cb321d9f6b13849cf04cf72bc9e
