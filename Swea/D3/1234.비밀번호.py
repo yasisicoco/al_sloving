@@ -1,3 +1,6 @@
+# state 1
+# stack, ''.join() method
+
 T = 10
 for tc in range(1, T+1):
     leng, num = map(str, input().split())
