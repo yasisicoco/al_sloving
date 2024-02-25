@@ -1,42 +1,36 @@
-<<<<<<< HEAD
-T = 10
-for tc in range(1, T+1):
-    leng, num = map(str, input().split())
-    leng = int(leng)
-    
-    st = []
-    for i in range(leng): # num의 길이만큼 순회
-        # 스택안에 아무것도 없을때, 스택의 맨뒤와 문자열의i번째가 다를때 추가
-        if st == [] or st[-1] != num[i]:
-            st.append(num[i])
-        
-        else: # 스택의 맨뒤와 문자열의 i번째가 같을 때
-            st.pop() # 스택 후입을 선출시킨다.
-    
-    # 다 돌고 스택 프린트
-    print(f'#{tc}', ''.join(st))
-=======
-import sys
-sys.stdin = open('swea\\input\\1210.txt', 'r')
+# import sys
+# sys.stdin = open('swea\\input\\1210.txt', 'r')
+# sys.stdin = open('al_sloving\\swea\\input\\1210.txt', 'r')
 
 # 방향 벡터설정
-di = [0, 0, 1, -1] # 우 좌 하 상
-dj = [1, -1, 0, 0]
+di = [0, 0, -1] # 우 좌 상
+dj = [1, -1, 0]
 
 def dfs(i, j):
-
-    for k in range(4):
+    global result
+    # 우, 좌
+    for k in range(2): 
         ni = i + di[k]
         nj = j + dj[k]
-
-        # ni, nj 가 배열 안에 있고, 
-        if 0 <= ni < 100 and 0 <= nj < 100
-            if visited[ni][nj] == True: # 방문했던 곳이면 다음 반복문으로
-                continue
-            visited[ni][nj] = True # 아니면 방문처리 후
-            i, j = ni, nj # 다음 장소로
-            dfs(i, j)
-
+        # ni, nj 가 배열 안에 있고 첫 방문일 때, 좌우 먼저 확인
+        if 0 <= ni < 100 and 0 <= nj < 100 and not visited[ni][nj] and arr[ni][nj] == 1:
+            visited[ni][nj] = True # 방문처리
+            dfs(ni, nj)
+    
+    # 좌우에 길이 없을 때
+    # 위로 가기
+    # ni, nj가 배열안에 있다는 가정 하에 위로 가서 다시 dfs 진입 후 좌우 확인 > 반복
+    ni = i + di[2] # 위로
+    nj = j + dj[2]
+    if 0 <= ni < 100 and 0 <= nj < 100 and not visited[ni][nj] and arr[ni][nj] == 1:
+        visited[ni][nj] = True
+        if ni == 0: # 세로 인덱스가 0 일 때,
+            if result == -1: 
+                result = nj
+            return
+        else:
+            dfs(ni, nj)
+    
 
 T = 10
 for _ in range(1, T+1):
@@ -50,7 +44,10 @@ for _ in range(1, T+1):
             if arr[i][j] == 2:
                 si = i
                 sj = j
+                # print(si, sj)
                 break # 시작점 찾기
     
-    dfs(si, sj)
->>>>>>> 3749e6a7d99a5cb321d9f6b13849cf04cf72bc9e
+    result = -1
+    visited[si][sj] = True # 시작점 방문처리
+    dfs(si, sj) # 2번에서 출발
+    print(f'#{tc} {result}')
