@@ -38,3 +38,37 @@ for tc in range(1, T+1):
  
     result = dfs(S, G)
     print(f'#{tc} {result}')
+    
+    
+    
+# state 2
+def dfs(cur, g):
+    global result
+    visited[cur] = True
+    
+    for i in v[cur]:
+        if visited[i] == True:
+            continue
+        visited[i] = True
+        cur = i
+        if cur == g:
+            result = 1
+        dfs(cur, g)
+
+T = int(input())
+for tc in range(1, T+1):
+    V, E = map(int, input().split())
+    
+    # 인접정점리스트
+    v = [[] for _ in range(V+1)]
+    # 방문확인
+    visited = [False for _ in range(V+1)]
+    
+    for i in range(E):  # 간선정보
+        a, b = map(int, input().split())
+        v[a].append(b) # 방향존재
+    
+    result = 0
+    S, G = map(int, input().split()) # 출발 노드S, 도착 노드G
+    dfs(S, G)
+    print(f'#{tc} {result}')

@@ -53,3 +53,18 @@ for tc in range(1, T+1):
             cnt += 1
 
     print(f'#{tc} {cnt}')
+    
+    
+#state 3
+T = int(input())
+for tc in range(1, T+1):
+    strlst = input()
+    leng = len(strlst)
+    st = []
+    for i in range(leng):
+        if st == [] or strlst[i] != st[-1]: # 스택에 아무것도 없거나, 문자열과 스택 마지막에 들어온 문자랑 같지 않을 때
+            st.append(strlst[i])
+        else: # 스택이 있거나, 스택 마지막과 strlst[i] 가 같을때
+            st.pop()
+    
+    print(f'#{tc}', len(st))
