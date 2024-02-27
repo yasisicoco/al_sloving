@@ -38,3 +38,25 @@ for tc in range(1, T+1):
         if max_val < value:
             max_val = value
     print(f'#{tc} {max_val}')
+    
+    
+    
+    
+    
+# state 2 / 240225
+# T = int(input())
+# for tc in range(1, T+1):
+#     str1 = ''.join(list(set(input()))) # 중복제거
+#     str2 = input()
+    
+#     result = 0 # 최대값 저장
+#     for i in str1: # 문자열 1의 문자를 순회
+#         cnt = 0 # 각 문자열 길이 비교용
+#         for j in str2: # 문자열 2의 문자를 전부순회
+#             if i == j: # 만약 둘이 같다면 +1를 카운트
+#                 cnt += 1
+#             if result <= cnt:
+#                 result = cnt
+    
+#     # 다돌고 최대값 출력
+#     print(f'#{tc} {result}')
