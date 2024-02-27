@@ -1,55 +1,44 @@
+    # path[0] : 회사
+        # 중간에 고객 2, 3, 4, 5, ..., N+1
+    # path[1] : 집
+
+def gohome(x, y, leng):
+    global ans
+
+    if x == path[1][0] and y == path[1][1]: # 집의 좌표
+        print(ans)
+        return
+    
+
+    for r in range(2, N+1): # 고객의 집 동선 k : 2 부터
+        nx = abs(x - path[r][0]) # 이전에 있던 곳 - 지금 온 곳
+        ny = abs(y - path[r][1])
+        result = abs(nx - ny) # 거리값
+
+        if leng >= result:
+            leng = result
+            ans += leng
+            break
+        gohome(nx, ny, leng)
+    
 
 
-# player 1 win : 1
-# player 2 win : 2
-# else         : 0
 
-# run : 연속인 숫자가 3개 이상
-# triplet : 같은 숫자가 3개 이상
-    
-def run(player):
 
-    run_num = -1 # 이전 카드
-    cnt = 0
-    for k in player: # 카드를 뽑는 도중
-        if k == run_num: # 방금 뽑은 카드 k와 이전 카드를 비교
-            cnt += 1 # 같다면 cnt += 1
-        run_num = k  # 방금 뽑은거 저장
-        
-        if cnt >= 3: # 3번 연속이면 승리
-            return 1
-    
-    return 0
 
-def triplet(player):
 
-    arr = [0] * 10
-    for l in player:
-        arr[l] += 1
-        if arr[l] >= 3:
-            return 1
-    
-    return 0
-            
-    
-    
-    
 T = int(input())
 for tc in range(1, T+1):
-    card = list(map(int, input().split()))
-
-    result = 0
-    player1 = []
-    player2 = []
-    for i in range(0, 12, 2): # 카드 번갈아서 가져가기
-        player1.append(card[i])   
-        if run(player1) == 1 or triplet(player1) == 1:
-            result = 1
-            break     # 9 5 5 1 4 2  // case 1
-        player2.append(card[i+1])    # 9 6 6 1 2 1   
-        if run(player2) == 1 or triplet(player1) == 1:
-            result = 2
-            break
+    N = int(input())
+    
+    arr = list(map(int, input().split()))
+    path = []
+    for i in range(0, (N+2)*2, 2):
+        a, b = arr[i], arr[i+1]
+        path.append((a, b))
+    
+    ans = 0
+    gohome(path[0][0], path[0][1], 0) # 회사의 x좌표, y좌표, 최소값
 
     
-    print(f'#{tc} {result}')
+
