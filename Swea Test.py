@@ -2,30 +2,7 @@
         # 중간에 고객 2, 3, 4, 5, ..., N+1
     # path[1] : 집
 
-def gohome(x, y, leng):
-    global ans
-
-    if x == path[1][0] and y == path[1][1]: # 집의 좌표
-        print(ans)
-        return
-    
-
-    for r in range(2, N+1): # 고객의 집 동선 k : 2 부터
-        nx = abs(x - path[r][0]) # 이전에 있던 곳 - 지금 온 곳
-        ny = abs(y - path[r][1])
-        result = abs(nx - ny) # 거리값
-
-        if leng >= result:
-            leng = result
-            ans += leng
-            break
-        gohome(nx, ny, leng)
-    
-
-
-
-
-
+# D5. 최적 경로. 
 
 T = int(input())
 for tc in range(1, T+1):
@@ -37,8 +14,19 @@ for tc in range(1, T+1):
         a, b = arr[i], arr[i+1]
         path.append((a, b))
     
-    ans = 0
-    gohome(path[0][0], path[0][1], 0) # 회사의 x좌표, y좌표, 최소값
+    print(path)
+
+    v = [[0] * N for _ in range(N)]
+    for j in range(N):
+        for k in range(j+1, N):
+            v[j][k] = abs(path[j][0]-path[k][0]) + abs(path[j][1]-path[k][1])
+            v[k][j] = v[j][k]
+
+    for line in v:
+        print(line)    
+
+    # ans = 0
+    # gohome(path[0][0], path[0][1], 0) # 회사의 x좌표, y좌표, 최소값
 
     
 
