@@ -1,62 +1,41 @@
 from collections import deque
 
-def dfs(cur):
-    global dfs_check
-    
-    for i in v[cur]:
-        if visited[i]: # True
-            continue
-        visited[i] = True # if False > True
-        if i not in dfs_check:
-            dfs_check.append(i) 
-        cur = i
-        dfs(cur)
-
 def bfs(cur):
-    global bfs_check
+    cnt = 0
 
     Q = deque()
-    Q.append(v[cur])
+    Q.append(cur) # 현재위치 넣기
 
     while Q:
         cur = Q.popleft()
-        for i in cur:
+        for i in v[cur]:
             if visited[i]:
                 continue
             visited[i] = True
-            if i not in bfs_check:
-                bfs_check.append(i)
-            Q.append(v[i])
+            cnt += 1
+            if i == insrt2:
+                return cnt
+            Q.append(i)
+    return -1
 
+n = int(input()) # 전체 사람의 수 (정점)
+p1, p2 = map(int, input().split()) # 비교해야 하는 두 사람
+m = int(input()) # 부모 자식들간의 관계의 개수 (간선)
 
+v = [[] for _ in range(n+1)] # 인접정점
+visited = [False] * (n+1)
 
-# func()------------------------------------------
-    
-N, M, V = map(int, input().split())
-
-# 인접정점
-v = [[] for _ in range(N+1)] 
-# 방문확인
-visited = [False] * (N+1)
-
-# 간선수만큼 반복
-for i in range(M):
+for i in range(m):
     a, b = map(int, input().split())
     v[a].append(b)
-    v[b].append(a) 
+    v[b].append(a)
 
-for vv in v:
-    vv.sort()
-
-dfs_check = [V]
-visited[V] = True
-dfs(V)
-print(*dfs_check)
-
-# BFS---------------------------------------------
-bfs_check = [V]
-# 방문확인 초기화
-visited = [False] * (N+1)
-visited[V] = True
-bfs(V)
-print(*bfs_check)
+# print(v)
+if p1 < p2:
+    insrt = p1
+    insrt2 = p2
+else:
+    insrt = p2
+    insrt2 = p1
+visited[insrt] = True
+print(bfs(insrt))
