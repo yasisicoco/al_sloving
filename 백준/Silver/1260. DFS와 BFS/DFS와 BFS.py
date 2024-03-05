@@ -7,8 +7,7 @@ def dfs(cur):
         if visited[i]: # True
             continue
         visited[i] = True # if False > True
-        if i not in dfs_check:
-            dfs_check.append(i) 
+        dfs_check.append(i) 
         cur = i
         dfs(cur)
 
@@ -24,8 +23,7 @@ def bfs(cur):
             if visited[i]:
                 continue
             visited[i] = True
-            if i not in bfs_check:
-                bfs_check.append(i)
+            bfs_check.append(i)
             Q.append(v[i])
 
 
@@ -47,7 +45,7 @@ for i in range(M):
 
 for vv in v:
     vv.sort()
-
+# DFS---------------------------------------------
 dfs_check = [V]
 visited[V] = True
 dfs(V)
