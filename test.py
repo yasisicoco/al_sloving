@@ -1,3 +1,22 @@
+import sys
+sys.setrecursionlimit(10**6)
+
+def work(start, sumone):
+    global result
+    if start > N-1: # 넘어가면 그냥리턴
+        return
+    
+    if start <= N:
+        result = sumone
+    
+    for j in range(start, N):
+        if N < lst[j][0] + j:
+            break
+        sumone += lst[j][1]
+        # print(sumone)
+        work(lst[j][0] + j, sumone)
+        
+        
 N = int(input())
 
 lst = []
@@ -8,18 +27,13 @@ for m in range(N):
 # print(lst)
 
 result = 0
-for i in range(N-1):
-    day = lst[i][0] # 0: 일수, 1: 수입
+ans = 0
+for i in range(N): # 첫 근무
+    if N < lst[i][0] + i:
+        break
     sumone = lst[i][1]
-    for j in range(day+1, N):
-        day += lst[j][0] # 0: 일수, 1: 수입
-        sumone += lst[j][1]
-        if day > N: # 근무일수가 지났으면
-            day -= lst[j][0] # 전 근무일수 빼고 다시진행
-            sumone -= lst[j][1]
-            continue
-        else: # 근무일수가 안지났으면 지금까지 더한 수익을 result와 비교 후 갱신
-            if result <= sumone:
-                result = sumone
+    work(lst[i][0] + i, sumone) # 인덱스 볼 곳 / 다음 볼 곳 / 더하는 값
+    if ans <= result:
+        ans = result
 
-print(result)
+print(ans)
