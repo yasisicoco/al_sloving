@@ -5,7 +5,7 @@ for i in range(1, 10001):
     sumone = int(strnum)
     for j in strnum:
         sumone += int(j)
-    if sumone <= 10000 and sumone in lst:
+    if sumone in lst:
         lst.remove(sumone)
     
 for j in lst:
