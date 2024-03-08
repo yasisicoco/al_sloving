@@ -3,7 +3,7 @@ sys.setrecursionlimit(10**6)
 
 def work(start, sumone):
     global result
-    if start > N-1: # 넘어가면 그냥리턴
+    if start > N: # 넘어가면 그냥리턴
         return
     
     if start <= N:
