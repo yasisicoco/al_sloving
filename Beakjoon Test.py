@@ -1,41 +1,31 @@
-from collections import deque
+import sys
+sys.setrecursionlimit(10**6)
 
-def bfs(cur):
-    cnt = 0
+def work(start, sumone):
+    global result
 
-    Q = deque()
-    Q.append(cur) # 현재위치 넣기
+    if start > N+1: # 넘어가면 그냥리턴
+        return
+    
+    if start == N+1:
+        result = max(sumone, result)
+        return
 
-    while Q:
-        cur = Q.popleft()
-        for i in v[cur]:
-            if visited[i]:
-                continue
-            visited[i] = True
-            cnt += 1
-            if i == insrt2:
-                return cnt
-            Q.append(i)
-    return -1
+    work(start + lst[start][0], sumone + lst[start][1])
+    work(start + 1, sumone)
+        
+        
+N = int(input())
 
-n = int(input()) # 전체 사람의 수 (정점)
-p1, p2 = map(int, input().split()) # 비교해야 하는 두 사람
-m = int(input()) # 부모 자식들간의 관계의 개수 (간선)
+lst = []
+for m in range(N):
+    t, p = map(int, input().split())
+    lst.append((t, p))
+    
+lst = [0] + lst
 
-v = [[] for _ in range(n+1)] # 인접정점
-visited = [False] * (n+1)
+result = 0
+sumone = 0
+work(1, sumone) # 인덱스 볼 곳 / 더하는 값
 
-for i in range(m):
-    a, b = map(int, input().split())
-    v[a].append(b)
-    v[b].append(a)
-
-# print(v)
-if p1 < p2:
-    insrt = p1
-    insrt2 = p2
-else:
-    insrt = p2
-    insrt2 = p1
-visited[insrt] = True
-print(bfs(insrt))
+print(result)

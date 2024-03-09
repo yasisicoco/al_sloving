@@ -6,6 +6,9 @@ def work(start, sumone):
     if start > N: # 넘어가면 그냥리턴
         return
     
+    if start == N:
+        result = sumone
+
     if start <= N:
         result = sumone
     
@@ -32,7 +35,7 @@ for i in range(N): # 첫 근무
     if N < lst[i][0] + i:
         break
     sumone = lst[i][1]
-    work(lst[i][0] + i, sumone) # 인덱스 볼 곳 / 다음 볼 곳 / 더하는 값
+    work(lst[i][0] + i, sumone) # 인덱스 볼 곳 / 더하는 값
     if ans <= result:
         ans = result
 
