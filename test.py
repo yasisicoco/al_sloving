@@ -29,8 +29,6 @@ def clean(si, sj, dir_):
         print(cnt)
         exit()
 
-
-
 N, M = map(int, input().split())
 r, c, dir_ = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
