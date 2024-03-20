@@ -2,14 +2,10 @@
 
 def cutting(lo, hi):
     global result
-    
     if lo > hi:
         return
     
     mid = (lo + hi) // 2
-    
-    if result >= mid:
-        return
     
     sumone = 0
     for i in range(N):
