@@ -1,6 +1,6 @@
-def password(cur, k):
+def password(cur):
     
-    if k == L:
+    if len(ans) == L:
         vow = 0
         con = 0
         for l in ans:
@@ -17,7 +17,7 @@ def password(cur, k):
             return
         visited[i] = True
         ans.append(lst[i])
-        password(i+1, k+1)
+        password(i+1)
         visited[i] = False
         ans.pop()
 
@@ -28,4 +28,4 @@ lst = list(input().split())
 visited = [False for _ in range(C+1)]
 lst.sort()
 ans = []
-password(0, 0)
+password(0)
