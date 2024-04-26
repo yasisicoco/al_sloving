@@ -1,36 +1,35 @@
 from collections import deque
 
-def bfs(si, sj):
-    di = [0, 1, -1, 0]
-    dj = [1, 0, 0, -1]
+di = [1, 1, 1]
+dj = [-1, 0, 1]
+
+def bfs(si):
+    global result
+
     q = deque()
-    q.append([si, sj])
-    visited[si][sj] = True
+    sumone = arr[0][si]
+    q.append([0, si, sumone, -1])
+
     while q:
-        i, j = q.popleft()
-        for k in range(4):
-            ni = i + di[k]
-            nj = j + dj[k]
-            if 0 <= ni < N and 0 <= nj < M and not visited[ni][nj] and arr[ni][nj] == 1:
-                visited[ni][nj] = True # 방문처리
-                q.append([ni, nj])
+        ci, cj, sumone, dir = q.popleft()
+        for k in range(3):
+            ni = ci + di[k]
+            nj = cj + dj[k]
+            if dir == dj[k]:
+                continue
+            if 0 <= ni < N and 0 <= nj < M:
+                if ni == N-1:
+                    sumone += arr[ni][nj]
+                    result = min(sumone, result)
+                    continue
+                q.append([ni, nj, sumone+arr[ni][nj], dj[k]])
 
-T = int(input())
-for tc in range(T):
-    N, M, K = map(int, input().split())
 
-    # 배추맵
-    arr = [[0] * M for _ in range(N)]
-    for _ in range(K):
-        r, c = map(int, input().split())
-        arr[r][c] = 1
-    # 배추방문맵
-    visited = [[False] * M for _ in range(N)]
+N, M = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
 
-    cabage = 0
-    for i in range(N):
-        for j in range(M):
-            if arr[i][j] == 1 and not visited[i][j]:
-                bfs(i, j)
-                cabage += 1
-    print(cabage)
+result = 10e9
+for i in range(M):
+    bfs(i)
+
+print(result)
