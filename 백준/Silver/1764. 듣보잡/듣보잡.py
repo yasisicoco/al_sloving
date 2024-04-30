@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 N, M = map(int, input().split())
 nolook_nolisten = []
 no_look = set()
@@ -13,4 +16,4 @@ for i in range(M):
 nolook_nolisten.sort()
 print(len(nolook_nolisten))
 for people in nolook_nolisten:
-    print(people)
+    print(people.rstrip())
