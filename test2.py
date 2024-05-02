@@ -1,35 +1,39 @@
-from collections import deque
+di = [0, 1, -1, 0]
+dj = [1, 0, 0, -1]
 
-di = [1, 1, 1]
-dj = [-1, 0, 1]
+def seedsum(si, sj):
+    global visited, arr
+    seed = arr[si][sj]
+    for k in range(4):
+        ni = si + di[k]
+        nj = sj + dj[k]
+        if visited[ni][nj]:
+            return 
+        visited[ni][nj] = True
+        seed += arr[ni][nj]
 
-def bfs(si):
-    global result
+def recur(si):
+    global visited
+    visited = [[False] * N for _ in range(N)]
+    for k in range(si, N-1):
 
-    q = deque()
-    sumone = arr[0][si]
-    q.append([0, si, sumone, -1])
+        cnt = 0
+        for i in range(1, N-1):
+            for j in range(i, N-1):
+                if not visited[k][j]:
+                    min_val = seedsum(k, j)
+                    cnt += 1
+                    if cnt == 3:
+                        result = min(min_val, result)
+                        continue
 
-    while q:
-        ci, cj, sumone, dir = q.popleft()
-        for k in range(3):
-            ni = ci + di[k]
-            nj = cj + dj[k]
-            if dir == dj[k]:
-                continue
-            if 0 <= ni < N and 0 <= nj < M:
-                if ni == N-1:
-                    sumone += arr[ni][nj]
-                    result = min(sumone, result)
-                    continue
-                q.append([ni, nj, sumone+arr[ni][nj], dj[k]])
-
-
-N, M = map(int, input().split())
+N = int(input())
 arr = [list(map(int, input().split())) for _ in range(N)]
+# 테두리 안쪽을 돈다.
+# visited가 겹치면 바로 리턴한다.
 
 result = 10e9
-for i in range(M):
-    bfs(i)
+for i in range(1, N-1):
+    recur(i)
 
 print(result)
