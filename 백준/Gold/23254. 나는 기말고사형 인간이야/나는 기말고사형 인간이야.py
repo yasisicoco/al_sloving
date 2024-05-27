@@ -1,4 +1,6 @@
+import sys
 from heapq import heappop, heappush
+input = sys.stdin.readline
 
 # 시험은 24 x N 시간 후, 과목수 M
 N, M = map(int, input().split())
