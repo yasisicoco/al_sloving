@@ -1,8 +1,8 @@
 import sys
 input = sys.stdin.readline
 
-di = [0, 1, 0, -1] # 0: 동 1: 남 2: 서 3: 북
-dj = [1, 0, -1, 0]
+di = [-1, 0, 1, 0] # 0: 북 1: 동 2: 남 3: 서
+dj = [0, 1, 0, -1]
 dir = 0
 T = int(input())
 
