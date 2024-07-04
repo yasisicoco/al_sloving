@@ -12,10 +12,7 @@ a = round(sum(arr) / N)
 
 # 중앙값
 arr.sort()
-if N % 2 == 0:
-    b = (arr[N//2 - 1] + arr[N//2]) / 2
-else:
-    b = arr[N//2]
+b = arr[N//2]
 
 # 최빈값
 freq = Counter(arr).most_common()
