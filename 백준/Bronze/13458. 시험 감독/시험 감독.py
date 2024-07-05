@@ -11,10 +11,10 @@ for i in range(N):
     if arr[i] <= 0:
         continue
     else:
+        num = arr[i] // C
         if arr[i] % C == 0:
-            num = arr[i] // C
             cnt += num
         else:
-            num = arr[i] // C
             cnt += (num + 1)
+            
 print(cnt)
