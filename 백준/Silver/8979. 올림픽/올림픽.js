@@ -2,19 +2,16 @@ const fs = require("fs");
 const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
 const [N, K] = input[0].split(" ").map(Number);
-let arr = input.slice(1, N + 1);
+let arr = input.slice(1, N + 1).map((item) => item.split(" ").map(Number));
 
 // 1부터 N까지의 국가들의 index[1] index[2] index[3] 을 차례로 비교해서 sort
-arr = arr.sort((a, b) => {
-  const aValues = a.split(" ").map(Number);
-  const bValues = b.split(" ").map(Number);
-
-  if (aValues[1] !== bValues[1]) {
-    return bValues[1] - aValues[1];
-  } else if (aValues[2] !== bValues[2]) {
-    return bValues[2] - aValues[2];
+arr.sort((a, b) => {
+  if (a[1] !== b[1]) {
+    return b[1] - a[1];
+  } else if (a[2] !== b[2]) {
+    return b[2] - a[2];
   } else {
-    return bValues[3] - aValues[3];
+    return b[3] - a[3];
   }
 });
 
@@ -38,8 +35,5 @@ for (let i = 0; i < N - 1; i++) {
 }
 lst.push(cnt);
 
-for (let j = 0; j < N; j++) {
-  if (j === K) {
-    console.log(lst[j]);
-  }
-}
+let target = arr.findIndex((country) => country[0] === K);
+console.log(lst[target]);
