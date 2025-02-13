@@ -4,12 +4,8 @@ def solution(common):
     nxt = common[2]
     
     result = 0
-    cal = median - prev
     if (nxt - median) == (median - prev):
-        result = common[-1] + cal
+        result = common[-1] + (median - prev)
     else:
-        cal = median // prev
-        result = common[-1] * cal
-    print(result)
-    
+        result = common[-1] * (median // prev)    
     return result
