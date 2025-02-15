@@ -1,15 +1,19 @@
 def solution(quiz):
     result = []
     for vals in quiz:
-        a = vals.split('=')
-        # prevs = a[0].replace(" ","")
-        Prev = eval(a[0])
-        Next = eval(a[1])
-        # Prev = eval(Prev.replace(" ",""))
-        # Next = eval(Next.replace(" ",""))
-        if Prev == Next:
-            result.append("O")
-        else:
-            result.append("X")
-    print(result)
+        L, R = vals.split(' = ')
+        a, nd, b = L.split()
+        print(a, nd, b, R)
+        if nd == '+':
+            if int(a) + int(b) == int(R):
+                result.append('O')
+            else:
+                result.append('X')
+        elif nd == '-':
+            if int(a) - int(b) == int(R):
+                result.append('O')
+            else:
+                result.append('X')
+    # print(result)
+            
     return result
