@@ -39,4 +39,4 @@ for i in range(20):
 
 # 전공평점
 result = sum / rat_sum
-print(f'{result:.6f}')
+print(result)
