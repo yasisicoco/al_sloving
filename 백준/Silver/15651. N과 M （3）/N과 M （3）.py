@@ -1,13 +1,15 @@
-def recur():
-    if len(st) == M:
-        print(*st)
-        return
-
-    for i in range(1, N+1):
-        st.append(i)
-        recur()
-        st.pop()
-
 N, M = map(int, input().split())
-st = []
-recur()
+
+def back():
+    if len(arr) == M:
+        print(*arr)
+        return
+    
+    for i in range(1, N+1):
+        arr.append(i)
+        back()
+        arr.pop()
+        
+
+arr = []
+back()
