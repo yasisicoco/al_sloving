@@ -1,15 +1,16 @@
-import sys
-input = sys.stdin.readline
-
-def back(start, cur):
-    if len(cur) == M:
-        print(*cur)
-        return
-    for i in range(start, N):
-        cur.append(lst[i])
-        back(i, cur)
-        cur.pop()
-
 N, M = map(int, input().split())
-lst = sorted(map(int, input().split()))
-back(0, [])
+lst = list(map(int, input().split()))
+lst.sort()
+
+def back(s, arr):
+    if len(arr) == M:
+        print(*arr)
+        return
+    
+    for i in range(s, N):
+        arr.append(lst[i])
+        back(i, arr)
+        arr.pop()
+
+arr = []
+back(0, arr)
