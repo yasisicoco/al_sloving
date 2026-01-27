@@ -1,26 +1,23 @@
-import sys
-input = sys.stdin.readline
+N, M = map(int, input().split())
+lst = list(map(int, input().split()))
+lst.sort()
 
-def recur():
-    global result
+def back():
     check = 0
-    if len(num) == M:
-        print(*num)
+    if len(arr) == M:
+        print(*arr)
         return
     
     for i in range(N):
-        if not vis[i] and check != lst[i]:
-            vis[i] = True
-            num.append(lst[i])
+        if not visited[i] and check != lst[i]:
             check = lst[i]
-            recur()
-            num.pop()
-            vis[i] = False
-            
-N, M = map(int, input().split())
-lst = list(map(int, input().split()))
-vis = [False] * N
-num = []
-lst.sort()            
 
-recur()
+            visited[i] = True
+            arr.append(lst[i])
+            back()
+            arr.pop()
+            visited[i] = False
+
+visited = [False] * (N+1)
+arr = []
+back()
